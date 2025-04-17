@@ -11,5 +11,4 @@ class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=f"{BASE_DIR}/.env")
 
 
-# Получаем параметры для загрузки переменных среды
 settings = Settings()
