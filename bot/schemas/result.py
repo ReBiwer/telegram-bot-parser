@@ -11,3 +11,6 @@ class InfoParser(BaseModel):
     price: Decimal
 
     model_config = ConfigDict(from_attributes=True)
+
+    def __str__(self):
+        return f"title={self.title}, url={self.url}, price={self.price}"
