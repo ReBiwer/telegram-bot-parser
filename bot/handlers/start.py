@@ -12,13 +12,9 @@ from bot.config import settings
 start_router = Router()
 
 
-class DownloadFile(StatesGroup):
-    excel_file = State()
-
 
 @start_router.message(CommandStart())
-async def start(message: Message, state: FSMContext):
-    await state.set_state(DownloadFile.excel_file)
+async def start(message: Message):
     await message.answer("Приложите файл excel")
 
 
@@ -26,7 +22,7 @@ async def start(message: Message, state: FSMContext):
     F.document &
     F.document.file_name.endswith('.xlsx')
 )
-async def download_file_handler(message: Message, state: FSMContext):
+async def download_file_handler(message: Message):
     document = message.document
     file = await bot.get_file(document.file_id)
     file_path = file.file_path
